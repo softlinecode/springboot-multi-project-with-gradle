@@ -1,0 +1,38 @@
+spring:
+  profiles.active: local
+---
+
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:mysql://localhost:3306/springboot?useUnicode=true&charaterEncoding=utf-8
+    username: springbooter
+    password: springbooter123
+    driverClassName: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: false
+    generate-ddl: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: none
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+#      entitymanager:
+#        packagesToScan: com.desperado.product.domain
+
+server:
+    port: 8080
+
+flyway:
+  enabled: true
+  check-location: true # 마이그레이션 스크립트 파일이 존재하는지 여부를 확인
+  locations: classpath:db/migration # 마이그레이션 스크립트 위치
+  baseline-version: LATEST # 마이그레이션을 시작할 번호
+  sql-migration-prefix: V
+  sql-migration-suffix: .sql
+  url: jdbc:mysql://localhost:3306/springboot?useUnicode=true&charaterEncoding=utf-8
+  user: springbooter # Flyway 소유의 데이터소스를 생성하려고 하는 경우 사용
+  password: springbooter123
+
+---

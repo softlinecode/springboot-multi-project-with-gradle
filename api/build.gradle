@@ -1,0 +1,11 @@
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'api'
+    version = '0.0.1-SNAPSHOT'
+}
+
+dependencies {
+    compile project(':domain')
+    compile("org.springframework.boot:spring-boot-starter-web")
+}

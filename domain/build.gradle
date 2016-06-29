@@ -1,0 +1,52 @@
+apply plugin: 'spring-boot'
+apply plugin: 'java'
+apply plugin: 'flyway'
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("mysql:mysql-connector-java")
+    compile("com.mysema.querydsl:querydsl-apt:3.3.0")
+    compile "org.flywaydb:flyway-core"
+}
+
+
+//plugins {
+//    id "org.flywaydb.flyway" version "4.0.1"
+//}
+
+flyway {
+    driver = 'com.mysql.jdbc.Driver'
+    url = 'jdbc:mysql://localhost:3306/springboot?useUnicode=true&charaterEncoding=utf-8'
+    user = 'springbooter'
+    password = 'springbooter123'
+//    schemas = ['schema1', 'schema2', 'schema3']
+    table = 'schema_history'
+//    locations = ['classpath:db/migration', 'migrations2', 'filesystem:/sql-migrations']
+    sqlMigrationPrefix = 'V'
+//    repeatableSqlMigrationPrefix = 'RRR'
+//    sqlMigrationSeparator = '__'
+    sqlMigrationSuffix = '.sql'
+//    encoding = 'ISO-8859-1'
+//    placeholderReplacement = true
+//    placeholders = [
+//            'aplaceholder' : 'value',
+//            'otherplaceholder' : 'value123'
+//    ]
+//    placeholderPrefix = '#['
+//    placeholderSuffix = ']'
+//    resolvers = ['com.mycompany.proj.CustomResolver', 'com.mycompany.proj.AnotherResolver']
+//    skipDefaultResolvers = false
+//    callbacks = ['com.mycompany.proj.CustomCallback', 'com.mycompany.proj.AnotherCallback']
+//    skipDefaultCallbacks = false
+//    target = '1.1'
+    outOfOrder = false
+    validateOnMigrate = true
+    cleanOnValidationError = false
+//    ignoreFutureMigrations = false
+//    cleanDisabled = false
+//    baselineOnMigrate = false
+//    baselineVersion = 5
+//    baselineDescription = "Let's go!"
+}
